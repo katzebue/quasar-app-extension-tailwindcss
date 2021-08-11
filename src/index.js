@@ -13,7 +13,7 @@ function extendConf (conf) {
 module.exports = function (api) {
     api.compatibleWith('quasar', '^1.0.0 || ^2.0.0 || ^2.0.0-beta')
     api.compatibleWith('@quasar/app', '^1.0.0 || ^2.0.0 || ^3.0.0-beta')
-    // api.compatibleWith('postcss', '^8.1.0') // using compat build for now
+    api.compatibleWith('postcss', '^8.1.0')
 
     const purgecss = require('@fullhuman/postcss-purgecss')({
 
@@ -45,8 +45,10 @@ module.exports = function (api) {
                 .use('postcss')
                     .loader('postcss-loader')
                     .options({
-                        ident: 'postcss',
-                        plugins: plugins
+                        postcssOptions: {
+                            ident: 'postcss',
+                            plugins: plugins
+                        }
                     })
                     .end()
     })
